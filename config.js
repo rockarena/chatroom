@@ -1,6 +1,6 @@
 module.exports = {
   database: {
-    host: '55.55.55.55',
+    host: 'dev.anyclip.com',
     user: 'root',
     password: '1234',
     database: 'chatroom',

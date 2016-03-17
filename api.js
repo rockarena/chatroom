@@ -19,7 +19,8 @@ function connectDB() {
 function getMessages(partner, date, sortby) {
   return connectDB()
   .then(function(connection){
-    var query = 'select messasges.message, users.name from messages,users left join users on (messages.user_id = users.id)';
+    // var query = 'select * from messages';
+    var query = 'select messages.message, users.name from messages left join users on (messages.user_id = users.id)';
     return connection.query(query);
   })
   .then(function(rows) {

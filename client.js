@@ -32,10 +32,15 @@
     addMessasgeToView: function() {
 
     },
-    
+
     showMessages: function(){
     	var html = '';
     	return html
     }
   }
+
+	$(function(){
+		Chatroom.init();
+	})
+
 })(jQuery)

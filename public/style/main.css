@@ -1,0 +1,12 @@
+.pull-left {
+	float:left;
+}
+
+.box-footer {
+	clear: left;
+}
+
+.box-body {
+	width: 280px;
+	height: 400px;
+}

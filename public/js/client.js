@@ -51,7 +51,6 @@
       var source = Chatroom.controls.template.html();
       var template = bars.compile(source);
       Chatroom.controls.view.html(template({messages:Chatroom.messages}));
-    	// Chatroom.controls.view.html(template(Chatroom.messages));
     },
     getElements: function(){
     	for (var control in Chatroom.controls) {
@@ -63,7 +62,7 @@
     	return params[params.length-1]
     },
     bindControlls: function(){
-    	Chatroom.controls.send.on('click',function(e){
+    	Chatroom.controls.send.on('submit',function(e){
     		e.preventDefault();
         var message = Chatroom.controls.message.val();
     		var user = Chatroom.getUser();

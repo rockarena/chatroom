@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>Chatroom</title>
   <script type="text/javascript" src='js/handlebars.min.js'></script>
+  <link rel="stylesheet" type="text/css" href="style/main.css">
 </head>
 
 <body>
@@ -20,12 +21,14 @@
           <div class="box-body">
             <div id="direct-chat-messages"></div>
             <div class="box-footer">
-              <div class="input-group">
-                <input type="text" name="message" id='textMessage' placeholder="Type Message ..." class="form-control">
-                <span class="input-group-btn">
-										<button type="submit" class="btn btn-warning btn-flat" id='send'>Send</button>
+              <form method='post' id='send'>
+                <div class="input-group">
+                  <input type="text" name="message" id='textMessage' placeholder="Type Message ..." class="form-control">
+                  <span class="input-group-btn">
+										<button type="submit" class="btn btn-warning btn-flat" >Send</button>
 									</span>
-              </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
@@ -37,7 +40,7 @@
       {{#each messages}}
       <div class="direct-chat-msg">
         <div class="direct-chat-info clearfix">
-          <span class="direct-chat-name pull-left">{{name}}</span>
+          <span class="direct-chat-name pull-left">{{user}} : &nbsp;</span>
         </div>
         <div class="direct-chat-text">
           {{message}}

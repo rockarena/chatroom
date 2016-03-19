@@ -1,15 +1,12 @@
 var express = require('express');
 var api = require('./api.js');
+var bodyParser = require('body-parser')
 
 app = express();
-var allowCrossDomain = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', 'localhost:3000');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
+app.use(express.static('./public'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-    next();
-}
-app.use(allowCrossDomain);
 app.get('/allmessages', function(req, res) {
   api.getMessages()
     .then(function(result) {
@@ -19,14 +16,14 @@ app.get('/allmessages', function(req, res) {
     });
 });
 
-app.get('/message', function(req, res) {
-	var user = req.param('user');
-  var message = req.param('message');
-  api.addMessasge(user, message)
-    .then(function(result) {
-      return res.send({
-        status: result
-      });
+app.post('/message', function(req, res) {
+  var user = req.body.user;
+  var message = req.body.message;
+
+  api.addMessage(user, message)
+    .then(function(message) {
+      console.log(message);
+      res.send(message)
     });
 });
 

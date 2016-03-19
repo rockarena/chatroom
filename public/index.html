@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Chatroom</title>
+  <script type="text/javascript" src='js/handlebars.min.js'></script>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box box-warning direct-chat direct-chat-warning">
+            <div class="box-header with-border">
+              <h3 class="box-title">Chatroom</h3>
+            </div>
+          </div>
+          <div class="box-body">
+            <div id="direct-chat-messages"></div>
+            <div class="box-footer">
+              <div class="input-group">
+                <input type="text" name="message" id='textMessage' placeholder="Type Message ..." class="form-control">
+                <span class="input-group-btn">
+										<button type="submit" class="btn btn-warning btn-flat" id='send'>Send</button>
+									</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src='js/client.js'></script>
+    <script id="entry-template" type="text/x-handlebars-template">
+      {{#each messages}}
+      <div class="direct-chat-msg">
+        <div class="direct-chat-info clearfix">
+          <span class="direct-chat-name pull-left">{{name}}</span>
+        </div>
+        <div class="direct-chat-text">
+          {{message}}
+        </div>
+      </div>
+      {{/each}}
+    </script>
+</body>
+
+</html>

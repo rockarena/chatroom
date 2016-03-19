@@ -15,6 +15,37 @@ function connectDB() {
       }
     });
 }
+function addMessage(user, message) {
+  var user_id;
+  return connectDB()
+  .then(function(connection){
+    var query = 'select id from users where name =' + connection.escape(user);
+    return connection.query(query);
+  })
+  .then(function(response){
+    if (response.length > 0) {
+      user_id = response[0].id;
+      return _insertMessage(user_id,message)
+    }
+  })
+  .catch(function(err){
+    console.log(err)
+  })
+}
+
+function _insertMessage(user_id, message) {
+  return connectDB()
+  .then(function(connection){
+    var query = 'insert into messages (user_id, message) values (' + connection.escape(user_id) + ',' + connection.escape(message) +')';
+    return connection.query(query);
+  })
+  .then(function(response){
+    return {user_id:user_id, message:message}
+  })
+  .catch(function(err){
+    console.log(err)
+  })
+}
 
 function getMessages(partner, date, sortby) {
   return connectDB()
@@ -32,5 +63,6 @@ function getMessages(partner, date, sortby) {
 }
 
 module.exports = {
-  getMessages: getMessages
+  getMessages: getMessages,
+  addMessage: addMessage
 };
